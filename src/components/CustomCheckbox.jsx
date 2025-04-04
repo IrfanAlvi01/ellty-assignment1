@@ -7,7 +7,7 @@ const CustomCheckbox = ({checked, onChange}) => {
             <div
                 tabIndex={0}
                 className={`w-[23px] h-[23px] border-[1px] border-[#CDCDCD] rounded-[6px] flex items-center justify-center active:bg-[#5087F8] active:border-[#5087F8] relative transition-colors duration-300 ease-in-out
-          ${checked ? 'bg-[#2469F6] border-[#2469F6]' : 'bg-white'}
+          ${checked ? 'bg-[#2469F6] border-[#2469F5]' : 'bg-white'}
           focus:ring-2 focus:ring-[#E9F0FE] focus:outline-none focus:ring-offset-0 focus:box-shadow-none`}>
                 {checked && (
                     <svg width="17" height="13" viewBox="0 0 17 13" fill="none" xmlns="http://www.w3.org/2000/svg">
