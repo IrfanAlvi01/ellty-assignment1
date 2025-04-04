@@ -1,5 +1,5 @@
-import {useState} from 'react'
-import Checkbox from "./components/Checkbox.jsx";
+import {useState} from 'react';
+import CustomCheckbox from "./components/CustomCheckbox.jsx";
 
 function App() {
     const [checked, setChecked] = useState([false, false, false, false, false]);
@@ -18,11 +18,9 @@ function App() {
     };
 
     const setInitialCheckedState = () => {
-        console.log("Initial state set");
         const initialCheckedState = [false, false, false, false, false];
         setChecked(initialCheckedState);
-    }
-
+    };
 
     return (
         <div
@@ -30,7 +28,7 @@ function App() {
             <div className="h-[42px] flex flex-row justify-between items-center p-[8px_15px_8px_22px]">
                 <p>All pages</p>
                 <div className="h-[35px] w-[35px] flex items-center justify-center">
-                    <Checkbox checked={checked[0]} onChange={handleAllPagesChange}/>
+                    <CustomCheckbox checked={checked[0]} onChange={handleAllPagesChange}/>
                 </div>
             </div>
             <div className="h-[20px] flex justify-center items-center">
@@ -42,24 +40,24 @@ function App() {
                          className="h-[42px] flex flex-row justify-between items-center p-[8px_15px_8px_22px]">
                         <p>Page {index + 1}</p>
                         <div className="h-[35px] w-[35px] flex items-center justify-center">
-                            <Checkbox checked={checked[index + 1]} onChange={() => handleCheckboxChange(index + 1)}/>
+                            <CustomCheckbox checked={checked[index + 1]}
+                                            onChange={() => handleCheckboxChange(index + 1)}/>
                         </div>
                     </div>
                 ))}
-
                 <div className="h-[10px] flex justify-center">
                     <hr className="h-[0.7px] w-[340px] bg-[#CDCDCD]"/>
                 </div>
                 <div className="h-[60px] flex justify-between items-center p-[10px_15px_10px_15px]">
                     <button
                         className="w-[340px] h-[40px] rounded bg-[#FFCE22] focus:[#FFD84D] focus:outline-none active:[#FFD84D] text-[14px]"
-                        onClick={() => setInitialCheckedState()}
-                    >Done
+                        onClick={() => setInitialCheckedState()}>
+                        Done
                     </button>
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default App
+export default App;
