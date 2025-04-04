@@ -1,35 +1,65 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {useState} from 'react'
+import Checkbox from "./components/Checkbox.jsx";
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [checked, setChecked] = useState([false, false, false, false, false]);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    const handleCheckboxChange = (index) => {
+        const updatedCheckedState = checked.map((item, idx) =>
+            idx === index ? !item : item
+        );
+        setChecked(updatedCheckedState);
+    };
+
+    const handleAllPagesChange = () => {
+        const allChecked = !checked[0];
+        const updatedCheckedState = checked.map(() => allChecked);
+        setChecked(updatedCheckedState);
+    };
+
+    const setInitialCheckedState = () => {
+        console.log("Initial state set");
+        const initialCheckedState = [false, false, false, false, false];
+        setChecked(initialCheckedState);
+    }
+
+
+    return (
+        <div
+            className="h-[326px] w-[370px] py-[10px] border-solid border-[1px] rounded-[6px] border-[#EEEEEE] shadow-[0px_8px_15px_0px_rgba(20,20,20,0.12),0px_0px_4px_0px_rgba(20,20,20,0.1)] flex flex-col">
+            <div className="h-[42px] flex flex-row justify-between items-center p-[8px_15px_8px_22px]">
+                <p>All pages</p>
+                <div className="h-[35px] w-[35px] flex items-center justify-center">
+                    <Checkbox checked={checked[0]} onChange={handleAllPagesChange}/>
+                </div>
+            </div>
+            <div className="h-[20px] flex justify-center items-center">
+                <hr className="h-[0.7px] w-[340px] bg-[#CDCDCD]"/>
+            </div>
+            <div className="flex flex-col">
+                {[...Array(4)].map((_, index) => (
+                    <div key={index}
+                         className="h-[42px] flex flex-row justify-between items-center p-[8px_15px_8px_22px]">
+                        <p>Page {index + 1}</p>
+                        <div className="h-[35px] w-[35px] flex items-center justify-center">
+                            <Checkbox checked={checked[index + 1]} onChange={() => handleCheckboxChange(index + 1)}/>
+                        </div>
+                    </div>
+                ))}
+
+                <div className="h-[10px] flex justify-center">
+                    <hr className="h-[0.7px] w-[340px] bg-[#CDCDCD]"/>
+                </div>
+                <div className="h-[60px] flex justify-between items-center p-[10px_15px_10px_15px]">
+                    <button
+                        className="w-[340px] h-[40px] rounded bg-[#FFCE22] focus:[#FFD84D] focus:outline-none active:[#FFD84D] text-[14px]"
+                        onClick={() => setInitialCheckedState()}
+                    >Done
+                    </button>
+                </div>
+            </div>
+        </div>
+    )
 }
 
 export default App
