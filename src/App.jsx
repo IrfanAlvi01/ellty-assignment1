@@ -22,6 +22,8 @@ function App() {
         setChecked(initialCheckedState);
     };
 
+    console.log(checked);
+
     return (
         <div
             className="h-[326px] w-[370px] py-[10px] border-solid border-[1px] rounded-[6px] border-[#EEEEEE] shadow-[0px_8px_15px_0px_rgba(20,20,20,0.12),0px_0px_4px_0px_rgba(20,20,20,0.1)] flex flex-col">
